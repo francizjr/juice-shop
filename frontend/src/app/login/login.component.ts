@@ -68,6 +68,13 @@ export class LoginComponent implements OnInit {
   }
 
   login () {
+    if (!this.emailControl.valid) {
+      this.userService.isLoggedIn.next(false)
+      this.emailControl.markAsPristine()
+      this.passwordControl.markAsPristine()
+      return;
+    }
+
     this.user = {}
     this.user.email = this.emailControl.value
     this.user.password = this.passwordControl.value
